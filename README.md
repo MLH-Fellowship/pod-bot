@@ -17,13 +17,28 @@ Fill out `.env` with your token.
 
 The bot does 2 things:
 
-1. Creates Pod category based on command
-2. Creates Pod category based on file
+1. Creates Pod category and role based on command
+2. Creates Pod category and role based on file
 
 ### Running
 
-To run the bot in the background
+To run the bot in the background, for using the command:
 
 ```
-python -m pod --file <file>
+python -m pod
+```
+
+or to use a file
+
+```
+python -m pod --file <file_path>
+```
+
+File format:
+
+```
+Pod 1.0.1
+Pod 1.1.1
+Pod 1.0.2
+Pod 1.1.2
 ```
