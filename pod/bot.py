@@ -5,26 +5,17 @@ import re
 from dotenv import load_dotenv
 
 bot = commands.Bot('pod/')
+load_dotenv()
+admin_role_id = int(os.getenv("ADMIN_ROLE_ID"))
 
 def main():
-    load_dotenv()
     bot.run(os.getenv("TOKEN"))
 
-@bot.command(description="Create pod")
-async def create(ctx):
-    message = ctx.message.clean_content
-    args = message.split(' ')
-    pod_name = ""
 
-    if args[1][0] == '"':
-        matches = re.findall(r'\"(.+?)\"', message)
-        pod_name = ",".join(matches)
-    elif len(args) > 2:
-        args.pop(0)
-        for name in args:
-            pod_name += name + ' '
-    else:
-        pod_name = args[1]
+@bot.command(description="Create pod")
+@commands.has_role(admin_role_id)
+async def create(ctx, *, arg):
+    pod_name = arg
 
     guild = bot.get_guild(int(os.getenv("GUILD_ID")))
     pod_permission = discord.Permissions()
