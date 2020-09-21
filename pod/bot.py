@@ -47,7 +47,7 @@ async def create_pod(pod_name):
     
     overwrites = {
         guild.default_role: discord.PermissionOverwrite(read_messages=False),
-        pod_role: discord.PermissionOverwrite(read_messages=True)
+        pod_role: discord.PermissionOverwrite(read_messages=True, send_messages=True)
     }
 
     pod_category = await guild.create_category(name=pod_name, overwrites=overwrites)
